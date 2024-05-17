@@ -1,8 +1,8 @@
 from flask import Flask, render_template, Response
 from camera import VideoCamera
 
-# from signal import signal, SIGPIPE, SIG_DFL
-# signal(SIGPIPE, SIG_DFL)
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE, SIG_DFL)
 
 app = Flask(__name__)
 

@@ -8,7 +8,13 @@ font = cv2.FONT_HERSHEY_DUPLEX
 
 class VideoCamera(object):
     def __init__(self):
-        self.video = cv2.VideoCapture(0)
+        camera_index = 0
+        self.video = cv2.VideoCapture(camera_index)
+
+        if not self.video.isOpened():
+            print(f"Failed to open camera at index {camera_index}")
+        else:
+            print(f"Camera at index {camera_index} opened successfully.")
 
     def __del__(self):
         self.video.release()
