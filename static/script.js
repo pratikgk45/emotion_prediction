@@ -27,7 +27,7 @@ function captureAndSendFrame() {
 
 // Send the captured image to the server
 function sendImageToServer(imageData) {
-    fetch('http://127.0.0.1:5000/emotion_pred', {
+    fetch('/emotion_pred', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
