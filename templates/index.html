@@ -6,6 +6,10 @@
   <body>
   	<div class="container">
   		<h1>Real Time Emotion Prediction</h1>
+		<div id="error-message" style="display: none; color: red; padding: 10px; margin: 10px 0; background: #ffe6e6; border-radius: 5px;">
+			<strong>⚠️ HTTPS Required:</strong> Camera access requires a secure connection. 
+			<br>For local testing, use: <code>http://localhost:5000</code>
+		</div>
 		<div>
 			<video id="video" width="640" height="480" autoplay style="display: none;"></video>
 			<img 

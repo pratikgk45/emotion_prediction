@@ -1,14 +1,22 @@
 const video = document.getElementById('video');
 const video_frame = document.getElementById('video_frame');
+const errorMessage = document.getElementById('error-message');
 
-// Access the device camera and stream to video element
-navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
-        video.srcObject = stream;
-    })
-    .catch(error => {
-        console.error('Error accessing camera:', error);
-    });
+// Check if getUserMedia is available
+if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    errorMessage.style.display = 'block';
+    console.error('getUserMedia is not supported. This feature requires HTTPS.');
+} else {
+    // Access the device camera and stream to video element
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            video.srcObject = stream;
+        })
+        .catch(error => {
+            console.error('Error accessing camera:', error);
+            errorMessage.style.display = 'block';
+        });
+}
 
 // Function to capture a frame and send it to the server
 function captureAndSendFrame() {
