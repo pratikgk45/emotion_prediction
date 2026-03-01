@@ -69,4 +69,4 @@ function sendImageToServer(imageData) {
 }
 
 // Process frames as fast as possible (wait for previous to complete)
-setInterval(captureAndSendFrame, 100);
+setInterval(captureAndSendFrame, 50); // Increased from 100ms to 50ms (20 FPS)
