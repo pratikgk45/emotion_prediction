@@ -5,6 +5,8 @@ A deep CNN to classify the facial emotion into 7 categories. The model is traine
 To install all required dependencies, run `pip install -r requirements.txt`
 
 ## Usage
+
+### Local Development
 * Clone the repository and enter into the directory
 
 ```bash
@@ -12,16 +14,47 @@ git clone https://github.com/pratikgk45/emotion_prediction.git
 cd emotion_prediction
 ```
 
-* To train the model, we have converted actual csv file into a dataset of images, you can download dataset from [here](https://drive.google.com/file/d/1rkC29dRCaq8TZBh0ZRFANHwW3-PeIsrS/view?usp=sharing) and unzip it to create directory `data` right inside main repository. For training, run
+* Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+* To train the model, download dataset from [here](https://drive.google.com/file/d/1rkC29dRCaq8TZBh0ZRFANHwW3-PeIsrS/view?usp=sharing) and unzip it to create directory `data` right inside main repository. For training, run
 
 ```bash
 python train_model.py
 ```
-This will train a new model and its weights will be stored in `model.h5` file. If you want to skip this step(do not want to train your model), you can use our pre-trained `model.h5` model for further use.
+This will train a new model and its weights will be stored in `model.h5` file. If you want to skip this step, you can use the pre-trained `model.h5` model.
 
-* When trained model is ready, run flask app by
+* Run flask app locally
 
 ```bash
 python main.py
 ```
-Now, go to http://127.0.0.1:5000/ in your browser, give permission to the browser to use webcamera(if asked) and see the predictions...
+Now, go to http://127.0.0.1:5000/ in your browser, give permission to the browser to use webcamera(if asked) and see the predictions.
+
+### AWS Deployment
+The application is deployed on AWS using CDK with ECS Fargate.
+
+* Install CDK dependencies
+
+```bash
+cd infrastructure
+npm install
+```
+
+* Deploy to AWS
+
+```bash
+npm run cdk bootstrap  # First time only
+npm run cdk deploy
+```
+
+The deployment creates:
+- VPC with public/private subnets
+- ECS Fargate cluster
+- Application Load Balancer
+- Container running the Flask app
+
+Access the application via the Load Balancer DNS output after deployment.

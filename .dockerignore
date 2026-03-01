@@ -1,0 +1,8 @@
+myenv/
+__pycache__/
+*.pyc
+.DS_Store
+data/
+.vercel/
+infrastructure/cdk.out/
+infrastructure/node_modules/
